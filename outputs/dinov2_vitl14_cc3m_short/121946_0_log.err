@@ -1,0 +1,35 @@
+/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/plugins.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/home/sd6701/test/dinov2/dinov2/layers/swiglu_ffn.py:43: UserWarning: xFormers is available (SwiGLU)
+  warnings.warn("xFormers is available (SwiGLU)")
+/home/sd6701/test/dinov2/dinov2/layers/attention.py:27: UserWarning: xFormers is available (Attention)
+  warnings.warn("xFormers is available (Attention)")
+/home/sd6701/test/dinov2/dinov2/layers/block.py:33: UserWarning: xFormers is available (Block)
+  warnings.warn("xFormers is available (Block)")
+submitit ERROR (2025-11-28 14:56:20,942) - Submitted job triggered an exception
+Traceback (most recent call last):
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/_submit.py", line 11, in <module>
+    submitit_main()
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 69, in process_job
+    raise error
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 55, in process_job
+    result = delayed.result()
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/utils.py", line 137, in result
+    self._result = self.function(*self.args, **self.kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/run/train/train.py", line 26, in __call__
+    train_main(self.args)
+  File "/home/sd6701/test/dinov2/dinov2/train/train.py", line 313, in main
+    do_train(cfg, model, resume=not args.no_resume)
+  File "/home/sd6701/test/dinov2/dinov2/train/train.py", line 194, in do_train
+    dataset = make_dataset(
+  File "/home/sd6701/test/dinov2/dinov2/data/loaders.py", line 90, in make_dataset
+    dataset = class_(transform=transform, target_transform=target_transform, **kwargs)
+TypeError: 'module' object is not callable
+srun: error: b-31-111: task 0: Exited with exit code 1
+srun: Terminating StepId=121946.0

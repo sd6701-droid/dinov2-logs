@@ -1,0 +1,1 @@
+/home/sd6701/fall2025_deeplearning/outputs/dinov2_vitl14_cc3m/121909_submission.sh
