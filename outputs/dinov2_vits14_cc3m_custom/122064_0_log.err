@@ -1,0 +1,73 @@
+/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/plugins.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/home/sd6701/test/dinov2/dinov2/layers/swiglu_ffn.py:43: UserWarning: xFormers is available (SwiGLU)
+  warnings.warn("xFormers is available (SwiGLU)")
+/home/sd6701/test/dinov2/dinov2/layers/attention.py:27: UserWarning: xFormers is available (Attention)
+  warnings.warn("xFormers is available (Attention)")
+/home/sd6701/test/dinov2/dinov2/layers/block.py:33: UserWarning: xFormers is available (Block)
+  warnings.warn("xFormers is available (Block)")
+submitit ERROR (2025-11-28 19:33:11,050) - Submitted job triggered an exception
+Traceback (most recent call last):
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/_submit.py", line 11, in <module>
+    submitit_main()
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 69, in process_job
+    raise error
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/submission.py", line 55, in process_job
+    result = delayed.result()
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/submitit/core/utils.py", line 137, in result
+    self._result = self.function(*self.args, **self.kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/run/train/train.py", line 26, in __call__
+    train_main(self.args)
+  File "/home/sd6701/test/dinov2/dinov2/train/train.py", line 313, in main
+    do_train(cfg, model, resume=not args.no_resume)
+  File "/home/sd6701/test/dinov2/dinov2/train/train.py", line 245, in do_train
+    loss_dict = model.forward_backward(data, teacher_temp=teacher_temp)
+  File "/home/sd6701/test/dinov2/dinov2/train/ssl_meta_arch.py", line 235, in forward_backward
+    student_global_backbone_output_dict, student_local_backbone_output_dict = self.student.backbone(
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 748, in forward
+    output = self._fsdp_wrapped_module(*args, **kwargs)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/models/vision_transformer.py", line 326, in forward
+    ret = self.forward_features(*args, **kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/models/vision_transformer.py", line 257, in forward_features
+    return self.forward_features_list(x, masks)
+  File "/home/sd6701/test/dinov2/dinov2/models/vision_transformer.py", line 238, in forward_features_list
+    x = blk(x)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 748, in forward
+    output = self._fsdp_wrapped_module(*args, **kwargs)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/models/vision_transformer.py", line 41, in forward
+    x = b(x)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/sd6701/test/dinov2/dinov2/layers/block.py", line 314, in forward
+    return self.forward_nested(x_or_x_list)
+  File "/home/sd6701/test/dinov2/dinov2/layers/block.py", line 282, in forward_nested
+    x_list = drop_add_residual_stochastic_depth_list(
+  File "/home/sd6701/test/dinov2/dinov2/layers/block.py", line 256, in drop_add_residual_stochastic_depth_list
+    attn_bias, x_cat = get_attn_bias_and_cat(x_list, branges)
+  File "/home/sd6701/test/dinov2/dinov2/layers/block.py", line 236, in get_attn_bias_and_cat
+    cat_tensors = index_select_cat([x.flatten(1) for x in x_list], branges).view(1, -1, x_list[0].shape[-1])
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/xformers/ops/indexing.py", line 223, in index_select_cat
+    return _IndexSelectCat.apply(*sources, *indices)
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/autograd/function.py", line 506, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/xformers/ops/indexing.py", line 150, in forward
+    IndexSelect.OPERATOR(
+  File "/home/sd6701/miniconda3/envs/dinov2/lib/python3.10/site-packages/torch/_ops.py", line 502, in __call__
+    return self._op(*args, **kwargs or {})
+RuntimeError: Expected source.size(1) % kNumElementsPerBlock == 0 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+srun: error: b-31-111: task 0: Exited with exit code 1
+srun: Terminating StepId=122064.0

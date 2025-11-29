@@ -106,13 +106,13 @@ optim:
   adamw_beta2: 0.999
 crops:
   global_crops_scale:
-  - 0.32
+  - 0.4
   - 1.0
-  local_crops_number: 8
+  local_crops_number: 6
   local_crops_scale:
-  - 0.05
-  - 0.32
+  - 0.1
+  - 0.5
   global_crops_size: 224
-  local_crops_size: 98
+  local_crops_size: 112
 evaluation:
   eval_period_iterations: 12500
